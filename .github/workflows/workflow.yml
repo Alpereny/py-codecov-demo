@@ -2,6 +2,9 @@ name: Example workflow for Codecov
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches:
+      - main
 
 jobs:
   run:
@@ -23,6 +26,7 @@ jobs:
           pip install pytest
           pip install coverage
           coverage run -m pytest
+          coverage report -m
           coverage xml
 
       - name: Upload coverage to Codecov
